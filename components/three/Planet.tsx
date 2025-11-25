@@ -159,7 +159,7 @@ export default function Planet({ planet, date, orbitScale, planetScale }: Planet
   }, [planet.rotationPeriod, date]);
   
   // 处理点击
-  const handleClick = useCallback((e: THREE.Event) => {
+  const handleClick = useCallback((e: { stopPropagation: () => void }) => {
     e.stopPropagation();
     setSelectedPlanet(isSelected ? null : planet);
   }, [isSelected, planet, setSelectedPlanet]);
