@@ -1,8 +1,8 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
-import { Suspense, useEffect, useRef } from 'react';
-import { Stars, Environment, Preload } from '@react-three/drei';
+import { Suspense } from 'react';
+import { Stars, Preload } from '@react-three/drei';
 import { useSolarSystemStore } from '@/lib/store';
 import SolarSystem from './SolarSystem';
 import CameraController from './CameraController';

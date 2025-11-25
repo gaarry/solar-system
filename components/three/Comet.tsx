@@ -2,7 +2,7 @@
 
 import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Html, Trail } from '@react-three/drei';
+import { Html } from '@react-three/drei';
 import * as THREE from 'three';
 import { CometData } from '@/lib/planetData';
 import { useSolarSystemStore } from '@/lib/store';
@@ -123,7 +123,6 @@ function generateCometOrbitPath(comet: CometData, segments: number = 500): THREE
 
 export default function Comet({ comet, date, orbitScale }: CometProps) {
   const groupRef = useRef<THREE.Group>(null);
-  const coreRef = useRef<THREE.Mesh>(null);
   const tailRef = useRef<THREE.Points>(null);
   
   const { showOrbits, showLabels } = useSolarSystemStore();
@@ -217,7 +216,7 @@ export default function Comet({ comet, date, orbitScale }: CometProps) {
       
       <group ref={groupRef}>
         {/* 彗核 */}
-        <mesh ref={coreRef}>
+        <mesh>
           <sphereGeometry args={[comet.coreSize * 2, 16, 16]} />
           <meshBasicMaterial color={comet.color} />
         </mesh>

@@ -1,10 +1,9 @@
 'use client';
 
 import { useRef, useMemo, useState, useCallback } from 'react';
-import { useFrame, useLoader } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import { Html, Ring } from '@react-three/drei';
 import * as THREE from 'three';
-import { TextureLoader } from 'three';
 import { PlanetData } from '@/lib/planetData';
 import { calculatePlanetPosition, calculateRotationAngle } from '@/lib/orbitalMechanics';
 import { useSolarSystemStore } from '@/lib/store';
@@ -46,7 +45,6 @@ export default function Planet({ planet, date, orbitScale, planetScale }: Planet
     showLabels, 
     showAtmosphere,
     isPaused,
-    viewMode,
   } = useSolarSystemStore();
   
   const isSelected = selectedPlanet?.id === planet.id;

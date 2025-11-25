@@ -4,7 +4,6 @@ import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useSolarSystemStore } from '@/lib/store';
-import { SUN_DATA } from '@/lib/planetData';
 
 // 太阳着色器
 const sunVertexShader = `

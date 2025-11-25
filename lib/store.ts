@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { PlanetData, PLANETS, SUN_DATA } from './planetData';
+import { PlanetData, PLANETS } from './planetData';
 
 export type ViewMode = 'free' | 'follow' | 'orbit' | 'top';
 
