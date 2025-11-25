@@ -1,7 +1,6 @@
 'use client';
 
-import { useMemo, useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useMemo } from 'react';
 import * as THREE from 'three';
 import { Line } from '@react-three/drei';
 import { PlanetData } from '@/lib/planetData';
@@ -14,7 +13,6 @@ interface OrbitLineProps {
 }
 
 export default function OrbitLine({ planet, scale }: OrbitLineProps) {
-  const lineRef = useRef<THREE.Line>(null);
   const { selectedPlanet } = useSolarSystemStore();
   
   const isSelected = selectedPlanet?.id === planet.id;
@@ -37,27 +35,16 @@ export default function OrbitLine({ planet, scale }: OrbitLineProps) {
     return planet.color;
   }, [planet, isSelected]);
   
-  // 动画效果
-  useFrame(() => {
-    if (lineRef.current) {
-      const material = lineRef.current.material as THREE.LineBasicMaterial;
-      const targetOpacity = isSelected ? 0.8 : 0.25;
-      material.opacity += (targetOpacity - material.opacity) * 0.1;
-    }
-  });
-  
   return (
     <Line
-      ref={lineRef}
       points={points}
       color={color}
       lineWidth={isSelected ? 2 : 1}
       transparent
-      opacity={0.25}
+      opacity={isSelected ? 0.8 : 0.25}
       dashed={!isSelected}
       dashSize={isSelected ? 0 : 0.5}
       gapSize={isSelected ? 0 : 0.3}
     />
   );
 }
-
