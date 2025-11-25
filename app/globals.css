@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cosmic-dark: #0a0a1a;
+  --cosmic-deeper: #050510;
+  --cosmic-accent: #4f46e5;
+  --cosmic-glow: #818cf8;
+  --cosmic-nebula: #a855f7;
+  --cosmic-star: #fef08a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background: var(--cosmic-deeper);
+  font-family: 'Exo 2', sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--cosmic-accent), var(--cosmic-nebula));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--cosmic-glow), var(--cosmic-nebula));
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: rgba(10, 10, 26, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-dark {
+  background: rgba(5, 5, 16, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Glow effects */
+.glow-text {
+  text-shadow: 0 0 10px var(--cosmic-glow), 0 0 20px var(--cosmic-accent);
+}
+
+.glow-border {
+  box-shadow: 0 0 15px rgba(79, 70, 229, 0.3),
+              inset 0 0 15px rgba(79, 70, 229, 0.1);
+}
+
+.glow-button {
+  box-shadow: 0 0 20px rgba(79, 70, 229, 0.4),
+              0 0 40px rgba(79, 70, 229, 0.2);
+  transition: all 0.3s ease;
+}
+
+.glow-button:hover {
+  box-shadow: 0 0 30px rgba(79, 70, 229, 0.6),
+              0 0 60px rgba(79, 70, 229, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Animated gradient background */
+.cosmic-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--cosmic-deeper) 0%,
+    var(--cosmic-dark) 25%,
+    rgba(79, 70, 229, 0.1) 50%,
+    var(--cosmic-dark) 75%,
+    var(--cosmic-deeper) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Planet card hover effect */
+.planet-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.planet-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.planet-card:hover::before {
+  left: 100%;
+}
+
+.planet-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(129, 140, 248, 0.5);
+}
+
+/* Orbit line animation */
+@keyframes orbitPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+.orbit-line {
+  animation: orbitPulse 3s ease-in-out infinite;
+}
+
+/* Loading animation */
+.loading-ring {
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: var(--cosmic-glow);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Star twinkle effect */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.star {
+  animation: twinkle var(--duration, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Slider styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-track {
+  background: rgba(255, 255, 255, 0.1);
+  height: 4px;
+  border-radius: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cosmic-glow), var(--cosmic-nebula));
+  margin-top: -6px;
+  box-shadow: 0 0 10px var(--cosmic-glow);
+  transition: transform 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+input[type="range"]::-moz-range-track {
+  background: rgba(255, 255, 255, 0.1);
+  height: 4px;
+  border-radius: 2px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cosmic-glow), var(--cosmic-nebula));
+  border: none;
+  box-shadow: 0 0 10px var(--cosmic-glow);
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 12px;
+  background: var(--cosmic-dark);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 100;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+  visibility: visible;
+  bottom: calc(100% + 8px);
+}
+
